@@ -8,6 +8,7 @@ require.config({
         nprogress:'nprogress/nprogress',
         echarts:'echarts/echarts.min',
         common:'../js/common',
-        login:'../js/login'
+        login:'../js/login',
+        template:'artTemplate/template-web'
     }
 })

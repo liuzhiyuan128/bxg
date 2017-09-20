@@ -1,5 +1,5 @@
 
-	define(['jquery','cookie'],function($,cookie){
+	define(['jquery','cookie','template'],function($,cookie,template){
 		$('.navs ul').prev('a').on('click', function () {
 			$(this).next().slideToggle();
 		});
@@ -33,10 +33,22 @@
 		var loginInfo = $.cookie('loginInfo');
 		
 		loginInfo = loginInfo && JSON.parse(loginInfo);
-		console.log($('.aside .profile div img'));
+
+		//头部模板
+		var tpl = '<div class="avatar img-circle">'
+           		  +'<img src="{{tc_avatar}}">'
+        		  +'</div>'
+        		  +'<h4>{{tc_name}}</h4>';
 		
-		$('.aside .profile div img').attr('src',loginInfo.tc_avatar)
-		$('.aside .profile h4').html(loginInfo['tc_name'])
+
+				  //模板传入
+		var reader = template.compile(tpl);
+
+		//传入数据
+		var html = reader(loginInfo);
+
+	console.log(html)
+		$('.aside .profile').html(html);
 
 	
 	})
