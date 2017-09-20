@@ -9,6 +9,7 @@ require.config({
         echarts:'echarts/echarts.min',
         common:'../js/common',
         login:'../js/login',
-        template:'artTemplate/template-web'
+        template:'artTemplate/template-web',
+        teacherList:'../js/teacherList'
     }
 })

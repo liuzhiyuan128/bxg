@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>学IT - 后台管理系统</title>
-    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" href="./assets/nprogress/nprogress.css">
-    <link rel="stylesheet" href="./less/index.css">
+    <?php
+    include('./views/common/style.html');
+?>
 </head>
 <body>
     
@@ -36,7 +35,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./teacher_list.html" class="active">
+                    <a href="/teacher/teacher_list" class="active">
                         <i class="fa fa-bell"></i>
                         讲师管理
                     </a>
@@ -102,7 +101,7 @@
     <div class="main">
         <div class="container-fluid">
             <!-- 头部 -->
-            <div class="header">
+         <!--    <div class="header">
                 <nav class="navbar navbar-custom">
                     <div class="navbar-header">
                         <a href="javascript:;" class="navbar-brand">
@@ -135,7 +134,11 @@
                         </li>
                     </ul>
                 </nav>          
-            </div>
+            </div> -->
+
+            <?php
+                include('./views/common/header.html')
+            ?>
             <!-- 讲师列表 -->
             <div class="body teacher-list">
                 <!-- 面包屑 -->
@@ -163,14 +166,14 @@
                                 <th>编号</th>
                                 <th>姓名</th>
                                 <th>昵称</th>
-                                <th>年龄</th>
+                                <th>入职日期</th>
                                 <th>性别</th>
                                 <th>手机号码</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                       <tbody>
+                            <!--  <tr>
                                 <td>1</td>
                                 <td>赵玉川</td>
                                 <td>布头儿</td>
@@ -182,8 +185,8 @@
                                     <a href="./teacher_add.html" class="btn btn-info btn-xs">编 辑</a>
                                     <a href="javascript::" class="btn btn-warning btn-xs">注 销</a>
                                 </td>
-                            </tr>
-                        </tbody>
+                            </tr>-->
+                        </tbody> 
                     </table>
                 </div>
             </div>
@@ -241,9 +244,43 @@
         </div>
     </div>
 
-    <script src="./assets/jquery/jquery.min.js"></script>
+  <!--   <script src="./assets/jquery/jquery.min.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="./assets/nprogress/nprogress.js"></script>
-    <script src="./js/common.js"></script>
+    <script src="./js/common.js"></script> -->
+
+    <!-- js样式 -->
+    <?php
+        include('./views/common/script.html');
+    ?>
+
+    <script type="text/template" id="tplTeacher">
+      {{each list}}
+        <tr>
+                <td>{{$index+1}}</td>
+                <td>{{$value.tc_name}}</td>
+                <td>{{$value.tc_roster}}</td>
+                <td>{{$value.tc_join_date}}</td>
+                <td>{{if $value.tc_gender == 1}}
+                    女
+                    {{else}}
+                    男
+                    {{/if}}
+                </td>
+                <td>{{$value.tc_cellphone}}</td>
+                <td>
+                    <a href="#teacherModal" data-toggle="modal" class="btn btn-info btn-xs">查 看</a>
+                    <a href="./teacher_add.html" class="btn btn-info btn-xs">编 辑</a>
+                    <a href="javascript::" class="btn btn-warning btn-xs">注 销</a>
+                </td>
+            </tr>
+        {{/each}}
+     
+
+    
+    </script>
+    <script>
+        require(["teacherList"])
+    </script>
 </body>
 </html>

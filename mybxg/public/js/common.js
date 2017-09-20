@@ -7,14 +7,13 @@
 		
 		//退出登录
 		$('#loginOut').on('click',function(){
+			alert(1);
 			$.ajax({
 				type:'post',
 				dateType:'json',
 				url:'/api/logout',
 				success:function (date){
 					if(date.code==200){
-					
-					
 						location.href = '/main/login';
 					}
 				}
@@ -24,7 +23,8 @@
 		//退出 
 		var flag = $.cookie('PHPSESSID');
 		
-		if(!flag){
+		if(!flag && !(location.pathname == "/main/login")){
+			
 			location.href = '/main/login';
 		}
 		
@@ -47,7 +47,6 @@
 		//传入数据
 		var html = reader(loginInfo);
 
-	console.log(html)
 		$('.aside .profile').html(html);
 
 	
