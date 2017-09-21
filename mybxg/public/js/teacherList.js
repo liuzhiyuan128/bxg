@@ -7,11 +7,40 @@ define(["jquery",'template','cookie'],function ($,template) {
         success:function (date) {
             console.log(date);
             if(date.code == 200){
-                console.log($('#tplTeacher'))
+                
+           
                 var html = template('tplTeacher',{list:date.result});
-                console.log($('.main').find('tbody'));
-                $('.main').find('tbody').html(html)
-
+               
+                $('.main').find('tbody').html(html);
+                
+                   //获取状态值
+                   
+                $('.logoutBtn').on('click',function(){
+                    var tcStatus = $(this).parent().attr('data-tcStatus');
+                    var tcId = $(this).parent().attr('data-tcId');
+                //   $(this).parent().attr('data-tcStatus',tcStatus==0 ? 1 : 0);
+            
+                 var $that = $(this);
+                      
+               
+                    $.ajax({
+                        type:'post',
+                        dataType:'json',
+                        url:'/api/teacher/handle',
+                        data:{tc_id:tcId,tc_status:tcStatus},
+                        success: function (data) {
+                          
+                            if(data.code==200){
+                                $that.parent().attr('data-tcStatus',data.result.tc_status);
+                                if(data.result.tc_status==1){
+                                    $that.html('注销');
+                                }else if(data.result.tc_status==0){
+                                    $that.html('登录');
+                                }
+                            }
+                        }
+                    })
+                });
                
             }
 
