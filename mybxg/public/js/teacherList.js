@@ -1,11 +1,11 @@
-define(["jquery",'template','cookie'],function ($,template) {
+define(["jquery",'template','cookie','bootstrap'],function ($,template) {
     $.ajax({
         type:'post',
         url:'/api/teacher',
         dataType:'json',
 
         success:function (date) {
-            console.log(date);
+            
             if(date.code == 200){
                 
            
@@ -20,7 +20,7 @@ define(["jquery",'template','cookie'],function ($,template) {
                     var tcId = $(this).parent().attr('data-tcId');
                 //   $(this).parent().attr('data-tcStatus',tcStatus==0 ? 1 : 0);
             
-                 var $that = $(this);
+                     var $that = $(this);
                       
                
                     $.ajax({
@@ -41,11 +41,31 @@ define(["jquery",'template','cookie'],function ($,template) {
                         }
                     })
                 });
+                $('.preview').on('click',function() {
+                    var tcId = $(this).parent().attr('data-tcId');
+                      console.log(tcId);
+                    $.ajax({
+                        type : 'get',
+                        data : {tc_id:tcId},
+                        dataType : 'json',
+                        url:'/api/teacher/view',
+                        success : function(data){
+                            if(data.code==200){
+                                var html = template('modelTpl',data.result);
+                               $('#modelInfo').html(html);
+                            }
+                             
+                        }
+
+                    });
+                });
                
             }
 
             
         }
     
-    })
+    });
+
+   
 })
