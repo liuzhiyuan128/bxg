@@ -11,6 +11,8 @@ require.config({
         login:'../js/login',
         template:'artTemplate/template-web',
         teacherList:'../js/teacherList',
+        util : '../js/util',
+        teacheradd : '../js/teacheradd'
      
     },
     shim : {
