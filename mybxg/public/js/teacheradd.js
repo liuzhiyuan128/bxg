@@ -8,31 +8,51 @@ define(['jquery','template','util'],function($,template,util){
     var tbl = '';
    var tcId = util.qs('tcId');
     if(tcId){
-
-       $('.breadcrumb .active').html('讲师编辑');
-
-    
       $.ajax({
           type:'get',
-         
           dataType:'json',
           url:'/api/teacher/edit',
           data:{tc_id:tcId},
           success:function (data) {
               if(data.code==200){
-                console.log(data);
+               
                 tpl = template('teacherTpl',data.result)
                 $('#teacherbox').html(tpl);
-                
+                //编辑讲师
+                submitForm('/api/teacher/update');
+               
               }
           
              
-          }
+       }
           
       })
     }else{
- 
+      //添加讲师
+
       tpl = template('teacherTpl',{})
       $('#teacherbox').html(tpl);
+      submitForm('/api/teacher/add');
+
     }
 })
+
+function submitForm(url){
+
+   $('#teacherBtn').on('click',function(){
+   
+       $.ajax({
+        type:'post',
+        url:url,
+        data:$('#addTeacher').serialize(),
+        dataType:'json',
+        success:function(data){
+           if(data.code==200){
+               location.href='/teacher/teacher_list'
+           }
+        }
+
+       })
+      
+   });
+}
