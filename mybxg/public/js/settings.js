@@ -1,5 +1,5 @@
 
-define(['jquery','template'],function ($,template) {
+define(['jquery','template','uploadify'],function ($,template) {
 
     $.ajax({
         type : 'get',
@@ -8,8 +8,26 @@ define(['jquery','template'],function ($,template) {
         success : function (data) {
             if(data.code==200){
                 var tpl = template('settingsTpl',data.result);
-                console.log(tpl)
+             
                 $('#settingsBox').html(tpl);
+              
+
+                //处理上传头像
+                $('#upfile').uploadify({
+                    width : 120,
+                    height : 120,
+                    buttonText : '',
+                    itemTemplate : '<span></span>',
+                    swf : '/public/assets/uploadify/uploadify.swf',
+                    uploader : '/api/uploader/avatar',
+                    fileObjName : 'tc_avatar',
+                    onUploadSuccess : function(a,b){
+                        console.log(b)
+                        var obj = JSON.parse(b);
+                        $('.preview img').attr('src',obj.result.path);
+                    }
+                })
+            
             }
         }
     });
