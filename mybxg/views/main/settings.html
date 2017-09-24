@@ -47,21 +47,13 @@
                             <div class="form-group">
                                 <label for="" class="col-xs-3 control-label">性别</label>
                                 <div class="col-xs-3">
-                                    {{if tc_gender}}
+                                    
                                         <label class="radio-inline">
-                                            <input type="radio" checked="checked"> 男
+                                            <input type="radio" {{if tc_gender==0}}checked{{/if}}> 男
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio"> 女
+                                            <input type="radio" {{if tc_gender==1}}checked{{/if}}> 女
                                         </label>
-                                    {{else}}
-                                    <label class="radio-inline">
-                                        <input type="radio"> 男
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio"  checked="checked"> 女
-                                    </label>
-                                    {{/if}}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -72,21 +64,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="" class="col-xs-3 control-label">籍贯</label>
-                                <div class="col-xs-5">
-                                    <select name="" class="form-control input-sm">
-                                        <option  value="">河北省</option>
-                                        <option value="">山东省</option>
-                                        <option value="">北京市</option>
+                                <div id='pcd' class="col-xs-5">
+                                    <select id='p' data-id='{{tc_province}}' class="form-control input-sm">
+                                        <option  value="">请选择省</option>
+                                        
                                     </select>
-                                    <select name="" class="form-control input-sm">
-                                        <option value="">河北省</option>
-                                        <option value="">山东省</option>
-                                        <option value="">北京市</option>
+                                    <select id='c' name="" data-id='{{tc_city}}' name="" class="form-control input-sm">
+                                        <option  value="">请选择县</option>
                                     </select>
-                                    <select name="" class="form-control input-sm">
-                                        <option value="">河北省</option>
-                                        <option value="">山东省</option>
-                                        <option value="">北京市</option>
+                                    <select id='d' name="" data-id='{{tc_district}}' name="" class="form-control input-sm">
+                                        <option  value="">请选择镇</option>
                                     </select>
                                 </div>
                             </div>
@@ -111,7 +98,7 @@
                             <div class="form-group">
                                 <label for="" class="col-xs-3 control-label">个人介绍</label>
                                 <div class="col-xs-5 ckeditor">
-                                    <textarea name="" rows="15" class="form-control input-sm">
+                                    <textarea id='editor' name="" rows="15" class="form-control input-sm">
                                         {{tc_introduce}}
                                     </textarea>
                                 </div>
