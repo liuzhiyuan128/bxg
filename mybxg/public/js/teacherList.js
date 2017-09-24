@@ -1,4 +1,4 @@
-define(["jquery",'template','cookie','bootstrap'],function ($,template) {
+define(["jquery",'template','cookie','bootstrap','validate','form'],function ($,template) {
     $.ajax({
         type:'post',
         url:'/api/teacher',

@@ -35,23 +35,23 @@
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">姓名</label>
                             <div class="col-xs-4">
-                                <input name='tc_name' type="text" class="form-control input-sm" placeholder="{{tc_name ? tc_name : '讲师名称'}}">
+                                <input data-required data-description='tcName' data-describedby='tcNameInfo' name='tc_name' type="text" class="form-control input-sm" placeholder="{{tc_name ? tc_name : '讲师名称'}}">
                             </div>
                         </div>
                         {{if !tc_id}}
                             <div class="form-group">
                                 <label for="" class="col-xs-3 control-label">密码</label>
                                 <div class="col-xs-4">
-                                    <input name='tc_pass'  type="password" class="form-control input-sm">
+                                    <input data-required data-description='tcPass' data-describedby='tcPassInfo' data-pattern='^\d{6}$' name='tc_pass'  type="password" class="form-control input-sm">
                                 </div>
                             </div>
                         
                         {{/if}}
                         <div class="form-group">
-                            <<input type="hidden" name="tc_id" value="{{tc_id}}">
+                            <input type="hidden" name="tc_id" value="{{tc_id}}">
                             <label for="" class="col-xs-3 control-label">入职时间</label>
                             <div class="col-xs-4">
-                                <input name='tc_join_date' placeholder="{{tc_join_date ? tc_join_date : ''}}" type="text"  class="form-control input-sm">
+                                <input data-required data-description='tcJoinDate' data-describedby='tcJoinDateInfo' data-provide='datepicker' data-date-language='zh-CN' data-date-format='yyyy-mm-dd' name='tc_join_date' placeholder="{{tc_join_date ? tc_join_date : ''}}" type="text"  class="form-control input-sm">
                             </div>
                         </div>
                         <div class="form-group">
@@ -92,7 +92,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-7">
-                                <input type='button' value='{{tc_id ? '修改' : '添加' }}' id='teacherBtn' class="btn btn-success btn-sm pull-right"> 
+                                <input type='submit' value='{{tc_id ? '修改' : '添加' }}' id='teacherBtn' class="btn btn-success btn-sm pull-right"> 
                             </div>                          
                         </div>
                     </form>

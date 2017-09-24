@@ -7,17 +7,28 @@ require.config({
         bootstrap:'bootstrap/js/bootstrap.min',
         nprogress:'nprogress/nprogress',
         echarts:'echarts/echarts.min',
+        datepicker : './bootstrap-datepicker/js/bootstrap-datepicker',
+        anguage : './bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min',
+        validate : 'validate/jquery-validate',
+        form : 'jquery-form/jquery.form',
         common:'../js/common',
         login:'../js/login',
         template:'artTemplate/template-web',
         teacherList:'../js/teacherList',
         util : '../js/util',
-        teacheradd : '../js/teacheradd'
+        teacheradd : '../js/teacheradd',
+       
      
     },
     shim : {
         bootstrap:{
             deps:['jquery']
+        },
+        anguage : {
+            deps : ['jquery','datepicker']
+        },
+        validate : {
+            deps : ['jquery']
         }
     }
 })
