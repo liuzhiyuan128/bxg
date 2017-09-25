@@ -1,5 +1,5 @@
 
-define(['jquery','template','ckeditor','uploadify','region'],function ($,template,CKEDITOR) {
+define(['jquery','template','ckeditor','uploadify','region','validate','form'],function ($,template,CKEDITOR) {
 
     $.ajax({
         type : 'get',
@@ -32,8 +32,11 @@ define(['jquery','template','ckeditor','uploadify','region'],function ($,templat
                 //三级联动
                 $('#pcd').region({
                     url : '/public/assets/jquery-region/region.json'
-                },
-                {
+                }
+            );
+
+                // 处理富文本
+                CKEDITOR.replace('editor', {
                     toolbarGroups : [
                         { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
                         { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
@@ -51,13 +54,43 @@ define(['jquery','template','ckeditor','uploadify','region'],function ($,templat
                         { name: 'about', groups: [ 'about' ] }
                     ]
                 
-                }
-            );
-
-                // 处理富文本
-                CKEDITOR.replace('editor')
+                })
             
             }
+         
+        
+            $('#settinsForm').validate({
+
+                sendForm:false,
+                valid : function (){
+              
+                   var p = $('#p').find('option:selected').text();  
+                   var c = $('#c').find('option:selected').text(); 
+                   var d = $('#d').find('option:selected').text(); 
+                   var hometown = p+'|'+c+'|'+d;
+                
+                   //同步富文本
+                
+                   for(var instance in CKEDITOR.instances){
+                       CKEDITOR.instances[instance].updateElement();
+                   }
+                             
+                    $(this).ajaxSubmit({
+                        type : 'post',
+                        url : '/api/teacher/modify',
+                        dataType : 'json',
+                        data:{tc_hometown:'hometown'},
+                        success : function (data) {
+                           console.log(data)
+                           if(data.code==200){
+                                location.reload()
+                           }
+                        }
+                        
+                    })
+                }
+            })
         }
+
     });
 });
