@@ -8,7 +8,7 @@ define(['jquery','util','template'],function ($,util,template) {
         dataType : 'json',
         url : "/api/course",
         success : function (data) {
-            console.log(data)
+          
             var tpl = template('courseListTpl',{list:data.result});
            
                 $('#courseListInfo').html(tpl);
