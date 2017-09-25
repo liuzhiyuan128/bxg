@@ -20,6 +20,7 @@ define([
         data : {cs_id : csId},
         url : '/api/course/basic',
         success : function (data) {
+            
             if(flag){
                 //添加课程
                 data.result.operate = '课程添加';
@@ -27,7 +28,7 @@ define([
                 //课程编辑
                 data.result.operate = '课程编辑';        
             }
-       
+       console.log(data)
             var html = template('basicTpl',data.result);
             $('#basicInfo').html(html);
         }
