@@ -1,4 +1,6 @@
-define(["jquery",'template','cookie','bootstrap','validate','form'],function ($,template) {
+define(["jquery",'template','util','cookie','bootstrap','validate','form'],function ($,template,util) {
+   util.setMenu(location.pathname)
+   
     $.ajax({
         type:'post',
         url:'/api/teacher',

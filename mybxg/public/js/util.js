@@ -22,6 +22,11 @@ define(['jquery'],function ($) {
             }
 
             return result;
+        },
+        //菜单选中功能
+        setMenu : function(url){
+      
+            $('.aside .navs a[href="'+url+'"]').addClass('active').closest('ul').show();
         }
     }
 })
