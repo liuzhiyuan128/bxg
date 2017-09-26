@@ -98,7 +98,7 @@
                                 <div class="form-group">
                                     <label for="" class="col-xs-2 control-label">分类</label>
                                     <div class="col-xs-8">
-                                        <select name="" class="form-control input-sm">
+                                        <select id='one' class="form-control input-sm">
                                             <option value="">一级分类</option>
                                             {{if category.top}}
                                                 {{each category.top}}
@@ -106,8 +106,8 @@
                                                 {{/each}}
                                             {{/if}}
                                         </select>
-                                        <select name="" class="form-control input-sm">
-                                                <option value="">一级分类</option>
+                                        <select id='two' class="form-control input-sm">
+                                                <option value="">二级分类</option>
                                                 {{if category}}
                                                     {{each category.childs}}
                                                     <option  {{if cs_cg_id == $value.cg_id}} selected {{/if}} value="{{$value.cg_id}}">{{$value.cg_name}}</option>
