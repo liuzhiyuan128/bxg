@@ -1,7 +1,8 @@
 define([
     'jquery',
     'util',
-    'template'
+    'template',
+    'ckeditor'
 ], function($, util,template) {
    //菜单样式
    util.setMenu('/course/course_add');
@@ -32,6 +33,7 @@ define([
             var html = template('basicTpl',data.result);
             $('#basicInfo').html(html);
 
+            //二级联动
             $('#one').on('change',function(){
                 var pid = $(this).val();
 
@@ -53,7 +55,10 @@ define([
                     }
 
                 })
-            })
+            });
+alert('d')
+            //处理富文本
+            CKEDITOR.replace('ckeditor');
         }
     })
 
