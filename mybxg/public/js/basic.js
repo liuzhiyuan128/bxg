@@ -78,7 +78,9 @@ define([
                         dataType : 'json',
                         url : '/api/course/update/basic',
                         success : function (data){
-                            console.log(data);
+                            if(data.code==200){
+                                location.href = '/course/pictrue?cs_id='+data.result.cs_id;
+                            }
                         }
                     })
                 }
