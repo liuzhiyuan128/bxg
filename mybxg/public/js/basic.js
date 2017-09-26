@@ -2,8 +2,11 @@ define([
     'jquery',
     'util',
     'template',
-    'ckeditor'
-], function($, util,template) {
+    'ckeditor',
+    'validate',
+    'form'
+    
+], function($, util,template,validate) {
    //菜单样式
    util.setMenu('/course/course_add');
 
@@ -21,7 +24,7 @@ define([
         data : {cs_id : csId},
         url : '/api/course/basic',
         success : function (data) {
-
+            console.log(data)
             if(flag){
                 //添加课程
                 data.result.operate = '课程添加';
@@ -56,9 +59,32 @@ define([
 
                 })
             });
-alert('d')
+
             //处理富文本
             CKEDITOR.replace('ckeditor');
+
+            //处理提交
+            $('#basicForm').validate({
+                sendForm : false,
+                valid : function () {
+
+                    //处理富文本同步
+                    for(var instance in CKEDITOR.instances){
+                        CKEDITOR.instances[instance].updateElement()
+                    }
+                    $(this).ajaxSubmit({
+                       
+                        type : 'post',
+                        dataType : 'json',
+                        url : '/api/course/update/basic',
+                        success : function (data){
+                            console.log(data);
+                        }
+                    })
+                }
+            })
+
+
         }
     })
 
