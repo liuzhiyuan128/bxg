@@ -14,6 +14,7 @@ require.config({
         form : 'jquery-form/jquery.form',
         uploadify : 'uploadify/jquery.uploadify.min',
         ckeditor : 'ckeditor/ckeditor',
+        Jcrop : "./crop/js/Jcrop",
         common:'../js/common',
         login:'../js/login',
         template:'artTemplate/template-web',
@@ -41,8 +42,11 @@ require.config({
         uploadify : {
             deps : ['jquery']
         },
-         ckeditor : {
+        ckeditor : {
            exports : 'CKEDITOR'
+        },
+        Jcrop : {
+            deps : ["jquery"]
         }
 
     }

@@ -7,7 +7,7 @@
 		
 		//退出登录
 		$('#loginOut').on('click',function(){
-			alert(1);
+		
 			$.ajax({
 				type:'post',
 				dateType:'json',
